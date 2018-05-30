@@ -57,11 +57,26 @@ class UsersTableSeeder extends Seeder
         // 插入到数据库
         User::insert($user_array);
 
-        // 单独处理第一条数据
+        // Fulwin
         $user = User::find(1);
         $user->name = 'Fulwin';
         $user->email = 'developer.fulwin@outlook.com';
         $user->avatar = 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1011858019,2955913109&fm=27&gp=0.jpg';
+        $user->save();
+        // Ayoaya
+        $user = User::find(2);
+        $user->name = 'Ayoaya';
+        $user->email = '18581898939@163.com';
+        $user->save();
+        // Evan
+        $user = User::find(3);
+        $user->name = 'Evan';
+        $user->email = 'vinty_email@163.com';
+        $user->save();
+        // Admin
+        $user = User::find(4);
+        $user->name = 'Admin';
+        $user->email = 'jiangming@atoptechnology.com';
         $user->save();
     }
 }

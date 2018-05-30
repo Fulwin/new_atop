@@ -51472,7 +51472,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\nbody {\n  background-color: #f1f1f1;\n}\n#header {\n  height: 60px;\n  border-bottom: solid 1px #ccc;\n  background-color: #fff;\n  padding-left: 20px;\n  padding-right: 20px;\n}\n#header .header-bar {\n  margin-top: 15px;\n}\n#header .header-bar .hb-item {\n  line-height: 30px;\n  padding: 0 20px;\n}\n#header .header-bar .hb-item:first-child {\n  padding-left: 0;\n}\n#header .header-bar .hb-item:last-child {\n  padding-right: 0;\n}\n#container {\n  width: 100%;\n}\n#container #aside {\n  width: 250px;\n  position: fixed;\n  top: 59px;\n  height: 100%;\n  background-color: #2d3e50;\n  overflow: hidden;\n}\n#container #main {\n  margin-left: 250px;\n  padding: 20px;\n}\n.el-menu {\n  border-right: none;\n}\n.el-form-item__label {\n  padding-right: 30px;\n}\n.el-form-item {\n  margin-bottom: 30px;\n}\n", ""]);
+exports.push([module.i, "\nhtml {\n  background-color: #f1f1f1;\n}\nbody {\n  background-color: #f1f1f1;\n  margin-top: 60px;\n}\n#header {\n  height: 60px;\n  border-bottom: solid 1px #ccc;\n  background-color: #fff;\n  padding-left: 20px;\n  padding-right: 20px;\n  position: fixed;\n  top: 0;\n  z-index: 10;\n  width: 100%;\n}\n#header .header-bar {\n  margin-top: 15px;\n}\n#header .header-bar .hb-item {\n  line-height: 30px;\n  padding: 0 20px;\n}\n#header .header-bar .hb-item:first-child {\n  padding-left: 0;\n}\n#header .header-bar .hb-item:last-child {\n  padding-right: 0;\n}\n#container {\n  width: 100%;\n}\n#container #aside {\n  width: 250px;\n  position: fixed;\n  top: 59px;\n  height: 100%;\n  background-color: #2d3e50;\n  overflow: hidden;\n}\n#container #main {\n  margin-left: 250px;\n  padding: 20px;\n}\n.el-menu {\n  border-right: none;\n}\n.el-form-item__label {\n  padding-right: 30px;\n}\n.el-form-item {\n  margin-bottom: 30px;\n}\n", ""]);
 
 // exports
 
@@ -98739,15 +98739,123 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    created: function created() {
+        this.getUsers();
+    },
     data: function data() {
-        return {};
+        return {
+            users: [],
+            search: '',
+            total: 0,
+            prev_page_url: '',
+            next_page_url: ''
+        };
     },
 
     methods: {
         createUser: function createUser() {
-            this.$router.push('/users/create');
+            this.$router.push("/users/create");
+        },
+        getUsers: function getUsers() {
+            var _this = this;
+
+            axios.get("/api/users").then(function (res) {
+                _this.updateData(res.data);
+                console.log(_this.total);
+            });
+        },
+        searchUser: function searchUser() {
+            var _this2 = this;
+
+            // 在axios中，get请求遵从一下格式 {params: data}
+            axios.get("/api/users", {
+                params: { search: this.search }
+            }).then(function (res) {
+                _this2.updateData(res.data);
+            });
+        },
+        updateData: function updateData(data) {
+            this.users = data.data;
+            this.total = data.total;
+            this.prev_page_url = data.prev_page_url;
+            this.next_page_url = data.next_page_url;
+        },
+        paginate: function paginate(type) {
+            var _this3 = this;
+
+            var currentPage = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+            var url = '';
+            switch (type) {
+                case 'prev':
+                    url = this.prev_page_url;
+                    break;
+                case 'next':
+                    url = this.next_page_url;
+                    break;
+                default:
+                    url = '/api/users?page=' + currentPage;
+            }
+            axios.get(url, {
+                params: { search: this.search }
+            }).then(function (res) {
+                _this3.updateData(res.data);
+            });
+        },
+        prevPage: function prevPage() {
+            this.paginate('prev');
+        },
+        nextPage: function nextPage() {
+            this.paginate('next');
+        },
+        currentPageChange: function currentPageChange(currentPage) {
+            this.paginate('current', currentPage);
         }
     }
 });
@@ -98779,17 +98887,157 @@ var render = function() {
           "div",
           { staticClass: "card-body" },
           [
-            _c(
-              "el-row",
-              [
+            _c("el-row", { staticClass: "mb-3" }, [
+              _c("div", { staticClass: "clearfix" }, [
                 _c(
-                  "el-button",
-                  { attrs: { plain: "" }, on: { click: _vm.createUser } },
-                  [_vm._v("创建用户")]
+                  "div",
+                  { staticClass: "float-left" },
+                  [
+                    _c(
+                      "el-button",
+                      { attrs: { plain: "" }, on: { click: _vm.createUser } },
+                      [_vm._v("创建用户")]
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "float-right" },
+                  [
+                    _c("el-input", {
+                      attrs: {
+                        placeholder: "搜索用户",
+                        "prefix-icon": "el-icon-search"
+                      },
+                      nativeOn: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.searchUser($event)
+                        }
+                      },
+                      model: {
+                        value: _vm.search,
+                        callback: function($$v) {
+                          _vm.search = $$v
+                        },
+                        expression: "search"
+                      }
+                    })
+                  ],
+                  1
                 )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "el-table",
+              {
+                staticStyle: { width: "100%" },
+                attrs: { data: _vm.users, stripe: "" }
+              },
+              [
+                _c("el-table-column", {
+                  attrs: { label: "头像", width: "100" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(scope) {
+                        return [
+                          _c("img", {
+                            staticClass: "rounded",
+                            attrs: {
+                              src: scope.row.avatar,
+                              height: "30",
+                              width: "30",
+                              alt: ""
+                            }
+                          })
+                        ]
+                      }
+                    }
+                  ])
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { prop: "name", label: "姓名" }
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: {
+                    prop: "email",
+                    label: "邮箱",
+                    "show-overflow-tooltip": true
+                  }
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { prop: "department.name", label: "部门" }
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { prop: "level.name", label: "级别" }
+                }),
+                _vm._v(" "),
+                _c("el-table-column", {
+                  attrs: { label: "操作" },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(scope) {
+                        return [
+                          _c(
+                            "el-button",
+                            { attrs: { type: "text", size: "small" } },
+                            [_vm._v("查看")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-button",
+                            { attrs: { type: "text", size: "small" } },
+                            [_vm._v("编辑")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-button",
+                            { attrs: { type: "text", size: "small" } },
+                            [_vm._v("删除")]
+                          )
+                        ]
+                      }
+                    }
+                  ])
+                })
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _c("el-pagination", {
+              staticClass: "mt-3",
+              attrs: {
+                background: "",
+                "page-size": 15,
+                layout: "prev, pager, next",
+                total: _vm.total
+              },
+              on: {
+                "prev-click": _vm.prevPage,
+                "next-click": _vm.nextPage,
+                "current-change": _vm.currentPageChange
+              }
+            })
           ],
           1
         )
@@ -98958,12 +99206,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    created: function created() {
+        this.getUsers();
+        this.getDepartments();
+        this.getLevels();
+        this.getPosts();
+    },
     data: function data() {
         return {
             form: {
@@ -98972,9 +99222,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 department_id: "",
                 level_id: "",
                 posts: [],
-                report: "",
-                status: true
+                report: ""
             },
+            users: [],
+            posts: [],
+            departments: [],
+            levels: [],
             rules: {
                 name: [{ required: true, message: '请输入真实姓名', trigger: 'blur' }],
                 email: [{ required: true, message: '请输入工作邮箱', trigger: 'blur' }, { type: 'email', message: '非法邮箱格式', trigger: 'blur' }],
@@ -98992,7 +99245,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$refs[formName].validate(function (valid) {
                 if (valid) {
-                    _this.$message.success('valid');
+                    axios({
+                        method: 'post',
+                        url: '/api/users',
+                        data: _this.form
+                    }).then(function (res) {
+                        console.log(res);
+                    });
                 } else {
                     _this.$message.error('请检查表单字段填写是否完整和正确');
                     return false;
@@ -99001,6 +99260,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         resetForm: function resetForm(formName) {
             this.$refs[formName].resetFields();
+        },
+        getUsers: function getUsers() {
+            var _this2 = this;
+
+            axios.get('/api/users').then(function (res) {
+                _this2.users = res.data;
+            });
+        },
+        getDepartments: function getDepartments() {
+            var _this3 = this;
+
+            axios.get('/api/departments').then(function (res) {
+                _this3.departments = res.data;
+            });
+        },
+        getLevels: function getLevels() {
+            var _this4 = this;
+
+            axios.get('/api/levels').then(function (res) {
+                _this4.levels = res.data;
+            });
+        },
+        getPosts: function getPosts() {
+            var _this5 = this;
+
+            axios.get('/api/posts').then(function (res) {
+                _this5.posts = res.data;
+            });
         }
     }
 });
@@ -99108,16 +99395,18 @@ var render = function() {
                                   expression: "form.department_id"
                                 }
                               },
-                              [
-                                _c("el-option", {
-                                  attrs: { label: "部门一", value: "1" }
-                                }),
-                                _vm._v(" "),
-                                _c("el-option", {
-                                  attrs: { label: "部门二", value: "2" }
+                              _vm._l(_vm.departments, function(
+                                department,
+                                index
+                              ) {
+                                return _c("el-option", {
+                                  key: index,
+                                  attrs: {
+                                    label: department.name,
+                                    value: department.id
+                                  }
                                 })
-                              ],
-                              1
+                              })
                             )
                           ],
                           1
@@ -99139,16 +99428,12 @@ var render = function() {
                                   expression: "form.level_id"
                                 }
                               },
-                              [
-                                _c("el-option", {
-                                  attrs: { label: "级别一", value: "1" }
-                                }),
-                                _vm._v(" "),
-                                _c("el-option", {
-                                  attrs: { label: "级别二", value: "2" }
+                              _vm._l(_vm.levels, function(level, index) {
+                                return _c("el-option", {
+                                  key: index,
+                                  attrs: { label: level.name, value: level.id }
                                 })
-                              ],
-                              1
+                              })
                             )
                           ],
                           1
@@ -99174,16 +99459,12 @@ var render = function() {
                                   expression: "form.posts"
                                 }
                               },
-                              [
-                                _c("el-option", {
-                                  attrs: { label: "职位一", value: "1" }
-                                }),
-                                _vm._v(" "),
-                                _c("el-option", {
-                                  attrs: { label: "职位二", value: "2" }
+                              _vm._l(_vm.posts, function(post, index) {
+                                return _c("el-option", {
+                                  key: index,
+                                  attrs: { label: post.name, value: post.id }
                                 })
-                              ],
-                              1
+                              })
                             )
                           ],
                           1
@@ -99205,16 +99486,12 @@ var render = function() {
                                   expression: "form.report"
                                 }
                               },
-                              [
-                                _c("el-option", {
-                                  attrs: { label: "汇报关系一", value: "1" }
-                                }),
-                                _vm._v(" "),
-                                _c("el-option", {
-                                  attrs: { label: "汇报关系二", value: "2" }
+                              _vm._l(_vm.users, function(user, index) {
+                                return _c("el-option", {
+                                  key: index,
+                                  attrs: { label: user.name, value: user.id }
                                 })
-                              ],
-                              1
+                              })
                             )
                           ],
                           1
