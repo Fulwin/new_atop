@@ -87,9 +87,9 @@
                 </el-scrollbar>
             </aside>
             <div id="main">
-                <router-view>
-                    
-                </router-view>
+                <transition>
+                    <router-view></router-view>
+                </transition>
             </div>
         </section>
     </div>
@@ -98,6 +98,47 @@
 <style lang="stylus" scope>
 @import '../../styl/base.styl';
 
+html
+    background-color #f5f8fa
+    
+body
+    background-color #f5f8fa
+    margin-top 60px
+    
+#header
+    height 60px
+    border-bottom solid 1px #ccc
+    background-color #fff
+    padding-left 20px
+    padding-right 20px
+    position fixed
+    top 0
+    z-index 10
+    width 100%
+    .header-bar
+        margin-top 15px
+        .hb-item
+            line-height 30px
+            padding 0 20px
+            &:first-child
+                padding-left 0
+            &:last-child
+                padding-right 0
+
+#container
+    width 100%
+
+    #aside
+        width 250px
+        position fixed
+        top 59px
+        height 100%
+        background-color #2d3e50
+        overflow hidden
+
+    #main
+        margin-left 250px
+        padding 20px
 
 </style>
 

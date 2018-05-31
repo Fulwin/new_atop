@@ -15,7 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('layout', require('./components/layout.vue'));
+// Vue.component('layout', require('./components/layout.vue'));
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -29,6 +29,11 @@ axios.defaults.timeout = 10000;
 // http请求拦截器
 var loadinginstace;
 axios.interceptors.request.use(config => {
+    let token = localStorage.token;
+    // 如果 token 不存在则跳转到登录页面
+    if (!token) {
+        router.push('/login');
+    }
     loadinginstace = ElementUI.Loading.service({ fullscreen: true });
     return config;
 }, error => {
@@ -40,15 +45,28 @@ axios.interceptors.request.use(config => {
 });
 
 // http响应拦截器
-axios.interceptors.response.use(data => {
+axios.interceptors.response.use((response) => {
     // 响应成功关闭loading
     loadinginstace.close();
-    return data;
-}, error => {
+    // 判断一下响应中是否有 token，如果有就直接使用此 token 替换掉本地的 token。你可以根据你的业务需求自己编写更新 token 的逻辑
+    var token = response.headers.authorization;
+    if (token) {
+        // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
+        this.$store.dispatch('refreshToken', token);
+    }
+    return response;
+}, (error) => {
     loadinginstace.close();
-    ElementUI.Message.error({
-        message: '加载失败'
-    });
+    switch (error.response.status) {
+        // 如果响应中的 http code 为 401，那么则此用户可能 token 失效了之类的，我会触发 logout 方法，清除本地的数据并将用户重定向至登录页面
+        case 401:
+            return store.dispatch('logout');
+            break;
+        // 如果响应中的 http code 为 400，那么就弹出一条错误提示给用户
+        case 400:
+            return ElementUI.Message.error(error.response.data.error);
+            break;
+    }
     return Promise.reject(error);
 });
 

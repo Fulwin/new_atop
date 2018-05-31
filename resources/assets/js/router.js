@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
+// 登录
+import login from './components/auth/login';
+// 布局
+import layout from './components/layout';
 // 首页
 import home from './components/home/home';
 // 用户管理
@@ -12,16 +16,22 @@ Vue.use(VueRouter);
 const routes = [
     {
         path: '/',
-        component: home
+        component: layout,
+        children: [
+            {
+                path: 'users',
+                component: users
+            },
+            {
+                path: 'users/create',
+                component: userCreate
+            }
+        ]
     },
     {
-        path: '/users',
-        component: users
+        path: '/login',
+        component: login
     },
-    {
-        path: '/users/create',
-        component: userCreate
-    }
 ];
 
 var router = new VueRouter({

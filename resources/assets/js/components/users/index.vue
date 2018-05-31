@@ -94,7 +94,7 @@ export default {
             });
         },
         updateData(data) {
-            this.users = data.data;
+            this.users = data.data ? data.data : [];
             this.total = data.total;
             this.prev_page_url = data.prev_page_url;
             this.next_page_url = data.next_page_url;
