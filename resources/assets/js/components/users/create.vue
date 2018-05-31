@@ -117,7 +117,7 @@ export default {
             this.$refs[formName].resetFields();
         },
         getUsers() {
-            axios.get('/api/users')
+            axios.get('/api/usersList')
             .then((res) => {
                 this.users = res.data;
             });

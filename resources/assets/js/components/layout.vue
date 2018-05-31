@@ -111,9 +111,6 @@ export default {
         handleClose(key, keyPath) {
             console.log(key, keyPath);
         }
-    },
-    mounted() {
-        console.log("Component mounted.");
     }
 };
 </script>

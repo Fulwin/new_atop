@@ -24,6 +24,8 @@ $api->version('v1', [
 ], function($api) {
     // 用户列表
     $api->get('users', 'UsersController@index')->name('api.Users.index');
+    // 所有用户
+    $api->get('usersList', 'UsersController@usersList')->name('api.Users.usersList');
     // 部门列表
     $api->get('departments', 'CommonController@departments')->name('api.Common.departments');
     // 职位列表

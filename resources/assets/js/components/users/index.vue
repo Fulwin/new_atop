@@ -83,7 +83,6 @@ export default {
         getUsers() {
             axios.get("/api/users").then(res => {
                 this.updateData(res.data);
-                console.log(this.total);
             });
         },
         searchUser() {

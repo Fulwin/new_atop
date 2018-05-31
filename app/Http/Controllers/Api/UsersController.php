@@ -19,4 +19,9 @@ class UsersController extends Controller
                     ->paginate();
         return $users;
     }
+
+    public function usersList()
+    {
+        return User::get();
+    }
 }
