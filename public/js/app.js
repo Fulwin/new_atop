@@ -52468,7 +52468,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\n.el-menu {\n  border-right: none;\n}\n.el-form-item__label {\n  padding-right: 30px;\n}\n.el-form-item {\n  margin-bottom: 30px;\n}\nhtml {\n  background-color: #f5f8fa;\n}\nbody {\n  background-color: #f5f8fa;\n  margin-top: 60px;\n}\n#header {\n  height: 60px;\n  border-bottom: solid 1px #ccc;\n  background-color: #fff;\n  padding-left: 20px;\n  padding-right: 20px;\n  position: fixed;\n  top: 0;\n  z-index: 10;\n  width: 100%;\n}\n#header .header-bar {\n  margin-top: 15px;\n}\n#header .header-bar .hb-item {\n  line-height: 30px;\n  padding: 0 20px;\n}\n#header .header-bar .hb-item:first-child {\n  padding-left: 0;\n}\n#header .header-bar .hb-item:last-child {\n  padding-right: 0;\n}\n#container {\n  width: 100%;\n}\n#container #aside {\n  width: 250px;\n  position: fixed;\n  top: 59px;\n  height: 100%;\n  background-color: #2d3e50;\n  overflow: hidden;\n}\n#container #main {\n  margin-left: 250px;\n  padding: 20px;\n}\n", ""]);
+exports.push([module.i, "\n.el-menu {\n  border-right: none;\n}\n.el-form-item__label {\n  padding-right: 30px;\n}\n.el-form-item {\n  margin-bottom: 30px;\n}\nhtml {\n  background-color: #f5f8fa;\n}\nbody {\n  background-image: none;\n  background-color: #f5f8fa;\n  margin-top: 60px;\n  font-family: \"Helvetica Neue\", Helvetica, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\5FAE\\8F6F\\96C5\\9ED1\", Arial, sans-serif;\n}\n#header {\n  height: 60px;\n  border-bottom: solid 1px #ccc;\n  background-color: #fff;\n  padding-left: 20px;\n  padding-right: 20px;\n  position: fixed;\n  top: 0;\n  z-index: 10;\n  width: 100%;\n}\n#header .header-bar {\n  margin-top: 15px;\n}\n#header .header-bar .hb-item {\n  line-height: 30px;\n  padding: 0 20px;\n}\n#header .header-bar .hb-item:first-child {\n  padding-left: 0;\n}\n#header .header-bar .hb-item:last-child {\n  padding-right: 0;\n}\n#container {\n  width: 100%;\n}\n#container #aside {\n  width: 250px;\n  position: fixed;\n  top: 59px;\n  height: 100%;\n  background-color: #2d3e50;\n  overflow: hidden;\n}\n#container #main {\n  margin-left: 250px;\n  padding: 20px;\n}\n", ""]);
 
 // exports
 
@@ -52512,6 +52512,8 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -100814,7 +100816,7 @@ exports = module.exports = __webpack_require__(15)(false);
 
 
 // module
-exports.push([module.i, "\nbody {\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "\n.el-menu {\n  border-right: none;\n}\n.el-form-item__label {\n  padding-right: 30px;\n}\n.el-form-item {\n  margin-bottom: 30px;\n}\nbody {\n  margin: 0;\n  font-family: \"Helvetica Neue\", Helvetica, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\5FAE\\8F6F\\96C5\\9ED1\", Arial, sans-serif;\n  background-image: url(\"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-118824.jpg\") !important;\n  background-size: 100%;\n}\n.login-container {\n  margin-top: 5%;\n  position: absolute;\n  left: 50%;\n  margin-left: -400px;\n  width: 800px;\n  height: 500px;\n  overflow: hidden;\n}\n.login-container .login-left {\n  width: 440px;\n  height: 100%;\n  background: rgba(255,255,255,0.25);\n}\n.login-container .login-left .infos {\n  width: 100%;\n  bottom: 30px;\n}\n.login-container .login-left .logo-box {\n  width: 120px;\n  height: 120px;\n  overflow: hidden;\n  border-radius: 50%;\n  background: rgba(255,255,255,0.3);\n}\n.login-container .login-left .logo-box .logo {\n  width: 110px;\n  height: 110px;\n  overflow: hidden;\n  border-radius: 50%;\n  margin: 5px 0 0 5px;\n}\n.login-container .login-right {\n  width: 360px;\n  height: 100%;\n  padding: 50px 40px;\n}\n.login {\n  margin-top: 80px;\n  background-color: #fff;\n}\n.login .login-form {\n  padding: 2rem 1.5rem;\n}\n", ""]);
 
 // exports
 
@@ -100836,10 +100838,99 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            user: {
+                email: '',
+                password: ''
+            }
+        };
     }
 });
 
@@ -100851,9 +100942,142 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    login page.\n")])
+  return _c("div", [
+    _c("div", { staticClass: "login-container rounded clearfix" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "login-right float-right bg-white" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "login-form pt-3" },
+          [
+            _c(
+              "el-form",
+              { ref: "login", attrs: { model: _vm.user, "label-width": "0" } },
+              [
+                _c(
+                  "el-form-item",
+                  [
+                    _c("el-input", {
+                      attrs: { type: "text", placeholder: "请输入邮箱" },
+                      model: {
+                        value: _vm.user.email,
+                        callback: function($$v) {
+                          _vm.$set(_vm.user, "email", $$v)
+                        },
+                        expression: "user.email"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-form-item",
+                  [
+                    _c("el-input", {
+                      attrs: { type: "password", placeholder: "请输入密码" },
+                      model: {
+                        value: _vm.user.password,
+                        callback: function($$v) {
+                          _vm.$set(_vm.user, "password", $$v)
+                        },
+                        expression: "user.password"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-button",
+                  {
+                    staticStyle: { width: "100%" },
+                    attrs: { type: "primary" }
+                  },
+                  [_vm._v("登录")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(2)
+          ],
+          1
+        )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "login-left float-left py-4 position-relative" },
+      [
+        _c("div", { staticClass: "logo-box mx-auto" }, [
+          _c("div", { staticClass: "logo bg-white" }, [
+            _c("img", {
+              staticClass: "rounded",
+              staticStyle: { "margin-top": "12px" },
+              attrs: {
+                src: "https://www.atoptechnology.com.cn/images/logo.jpg",
+                height: "92px",
+                alt: ""
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("h4", { staticClass: "text-center mt-3 text-white" }, [
+          _vm._v("华拓光通信股份有限公司")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "infos text-center position-absolute" }, [
+          _c("div", { staticClass: "text-white" }, [
+            _c("small", [_vm._v("建议使用1024*768以上分辨率进行浏览")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-white" }, [
+            _c("small", [_vm._v("浏览器兼容：IE8+ / FireFox / Google Chrome")])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h4", { staticClass: "text-primary mb-0" }, [_vm._v("用户登录")]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "border-primary" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-dark mt-3" }, [
+      _c("small", [
+        _c(
+          "a",
+          {
+            staticClass: "text-muted",
+            attrs: { href: "mailto:developer.fulwin@outlook.com" }
+          },
+          [_vm._v("没有账号？联系管理员获取账号")]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
