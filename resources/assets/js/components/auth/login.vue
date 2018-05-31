@@ -51,7 +51,7 @@
 body
     margin 0
     font-family "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif
-    background-image url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-118824.jpg') !important
+    background-image url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-118824.jpg')
     background-size 100%
 
 .login-container
