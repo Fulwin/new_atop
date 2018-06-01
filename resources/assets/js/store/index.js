@@ -28,7 +28,7 @@ const user = {
         // 登录成功后拉取用户的信息存储到本地
         profile(state, data) {
             state.id = data.id;
-            state.name = date.name;
+            state.name = data.name;
             state.avatar = data.avatar;
             state.email = data.email;
         },

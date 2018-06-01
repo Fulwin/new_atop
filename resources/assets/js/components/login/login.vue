@@ -25,14 +25,14 @@
                     <!-- <img src="https://www.atoptechnology.com.cn/images/logo.jpg" width="100%" alt=""> -->
                 </div>
                 <div class="login-form pt-3">
-                    <el-form ref="login" :model="user" label-width="0">
-                        <el-form-item>
+                    <el-form ref="login" :model="user" :rules="rules" label-width="0">
+                        <el-form-item prop="email">
                             <el-input type="text" v-model="user.email" placeholder="请输入邮箱"></el-input>
                         </el-form-item>
-                        <el-form-item>
+                        <el-form-item prop="password">
                             <el-input type="password" v-model="user.password" placeholder="请输入密码"></el-input>
                         </el-form-item>
-                        <el-button type="primary" style="width: 100%;">登录</el-button>
+                        <el-button type="primary" @click="login" style="width: 100%;">登录</el-button>
                     </el-form>
                     <div class="text-dark mt-3">
                         <small>
@@ -48,11 +48,12 @@
 <style lang="stylus" scope>
 @import '../../../styl/base.styl';
 
-body
-    margin 0
-    font-family "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif
+.login-page
+    margin-top 0
     background-image url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-118824.jpg')
     background-size 100%
+    background-position center top
+    background-repeat no-repeat
 
 .login-container
     margin-top 5%
@@ -95,13 +96,38 @@ body
 
 <script>
 export default {
+    // 页面创建之前赋予 body 背景图 class
+    beforeCreate() {
+        document.body.className = 'login-page';
+    },
     data() {
         return {
             user: {
                 email: '',
                 password: ''
+            },
+            rules: {
+                email: [
+                    { required: true, message: '请输入邮箱', trigger: 'blur' },
+                    { type: 'email', message: '非法邮箱格式', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' }
+                ]
             }
         }
+    },
+    methods: {
+        login() {
+            axios.post('/api/login', this.user).then((res) => {
+                this.$store.dispatch('logined', res.data.token);
+                this.$router.push('/home');
+            });
+        }
+    },
+    // 页面被销毁移除 body 身上的 class 避免出现页面跳转后样式被继承
+    beforeDestroy() {
+        document.body.removeAttribute('class', 'login-page')
     }
 }
 </script>

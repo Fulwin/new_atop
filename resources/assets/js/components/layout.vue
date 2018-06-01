@@ -16,7 +16,7 @@
                                 width="30" 
                                 class="rounded mr-1"
                                 alt="">
-                            <span>超级管理员</span>
+                            <span>{{ $store.state.user.name }}</span>
                         </div>
                     </div>
                 </div>
@@ -97,15 +97,10 @@
 
 <style lang="stylus" scope>
 @import '../../styl/base.styl';
-
-html
-    background-color #f5f8fa
     
 body
-    background-image none !important
-    background-color #f5f8fa
     margin-top 60px
-    font-family "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    background #f1f1f1
 
 #header
     height 60px

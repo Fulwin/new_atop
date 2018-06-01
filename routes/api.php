@@ -36,6 +36,8 @@ $api->version('v1', [
         $api->get('posts', 'CommonController@posts')->name('api.Common.posts');
         // 级别列表
         $api->get('levels', 'CommonController@levels')->name('api.Common.levels');
+        // 获取登录用户信息
+        $api->post('profile', 'UsersController@profile')->name('api.Users.profile');
     });
 });
 

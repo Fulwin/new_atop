@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 // 登录
-import login from './components/auth/login';
+import login from './components/login/login';
 // 布局
 import layout from './components/layout';
 // 首页
@@ -17,7 +17,12 @@ const routes = [
     {
         path: '/',
         component: layout,
+        redirect: '/home',
         children: [
+            {
+                path: 'home',
+                component: home
+            },
             {
                 path: 'users',
                 component: users
