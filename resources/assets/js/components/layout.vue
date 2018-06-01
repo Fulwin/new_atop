@@ -11,7 +11,7 @@
                             <router-link to="/"><i class="el-icon-time"></i> 待办事项</router-link>
                         </div>
                         <div class="hb-item float-left">
-                            <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2529469200,1162169902&fm=27&gp=0.jpg"
+                            <img :src="$store.state.user.avatar"
                                 height="30" 
                                 width="30" 
                                 class="rounded mr-1"

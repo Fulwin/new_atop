@@ -65,6 +65,7 @@ const user = {
                         commit('profile', respond.data);
                         resolve()
                     } else {
+                        commit('logout');
                         reject();
                     }
                 });

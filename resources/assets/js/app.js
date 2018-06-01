@@ -28,6 +28,16 @@ axios.defaults.timeout = 10000;
 
 var loadinginstace;
 
+router.beforeEach((to, from, next) => {
+    let token = localStorage.token;
+    if (token) {
+        // 页面跳转前重新抓取用户数据到 vuex
+        store.dispatch('profile');
+    }
+
+    next();
+});
+
 // http请求拦截器
 axios.interceptors.request.use(config => {
     let token = localStorage.token;
@@ -58,7 +68,7 @@ axios.interceptors.response.use((response) => {
     loadinginstace.close();
 
     // 判断一下响应中是否有 token，如果有就直接使用此 token 替换掉本地的 token。你可以根据你的业务需求自己编写更新 token 的逻辑
-    var token = response.headers.authorization;
+    var token = response.headers.Authorization;
     if (token) {
         // 如果 header 中存在 token，那么触发 refreshToken 方法，替换本地的 token
         store.dispatch('refreshToken', token);
@@ -66,7 +76,6 @@ axios.interceptors.response.use((response) => {
 
     return response;
 }, (err) => {
-    console.log(err.response);
     loadinginstace.close();
 
     switch (err.response.status) {
